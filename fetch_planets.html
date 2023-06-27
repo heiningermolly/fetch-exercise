@@ -1,0 +1,44 @@
+<!-- JSON exercise:
+1. Which of the following three code snippets is correct JSON syntax? Why are the other two options incorrect?
+Answer: #2 is correct ==> 1 is incorrect bc keys must be strings; and 3 is incorrect because double quotations must be used.
+
+2. Which of the following three code snippets is correct JSON? Why are the other two options incorrect?
+Answer: #1 is correct == > JSON is always pairs of keys and values, and the other two options are arrays without keys.
+
+fetch exercise:- -->
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Fetch Planets</title>
+      <script>
+         window.addEventListener("load", function() {
+            let json = [];
+            fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+   response.json().then(function(json) {
+
+      let index = 0
+      const destination = document.getElementById("destination");
+      destination.addEventListener("click", function(){
+         destination.innerHTML = `
+            <div>
+               <h3>Planet ${json[index].name}</h3>
+               <img src=${json[index].image} height=250></img>
+            </div>
+         `;
+         index = (index + 1) % json.length
+         
+      });
+   });
+});
+         });
+   </script>
+   </head>
+   <body>
+      <h1>Destination</h1>
+      <div id="destination">
+         <h3>Planet</h3>
+      </div>
+   </body>
+</html>
+
